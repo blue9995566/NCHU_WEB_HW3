@@ -1,0 +1,132 @@
+<html>
+<head>
+	<title>表單</title>
+	<style>
+		#div{
+			padding-left:30%;
+			padding-right:30%;
+		}
+		.red{
+			color:red;
+		}
+		.blue{
+			color:blue;
+		}
+	</style>
+
+	<script>
+		function generate(){
+			err="";
+			form=document.forms["form1"];
+			if (form.name1.value==""){
+				err+="請輸入性名";
+			}
+			if (form.bir.value==""){
+				err+="\n請輸入生日";
+			}
+			if (form.gender.value==""){
+				err+="\n請選擇性別";
+			}
+			hobby="";
+			for(var i=0;i<form.hobby.length;i++){
+				if(form.hobby[i].checked){
+					hobby+=form.hobby[i].value+"\n";
+				}
+			}
+			if (hobby==""){
+				err+="\n請勾選興趣";
+			}
+			if (err==""){
+				document.getElementById("textarea").value="我叫"+form.name1.value+"生日"+form.bir.value+".....\n剩下的還是自己打吧!";
+			}else{
+				alert(err);
+			}
+		}
+		
+		function gogo(){
+			err="";
+			form=document.forms["form1"];
+			if (form.name1.value==""){
+				err+="請輸入性名";
+			}
+			if (form.bir.value==""){
+				err+="\n請輸入生日";
+			}
+			if (form.gender.value==""){
+				err+="\n請選擇性別";
+			}
+			hobby="";
+			for(var i=0;i<form.hobby.length;i++){
+				if(form.hobby[i].checked){
+					hobby+=form.hobby[i].value+"\n";
+				}
+			}
+			if (hobby==""){
+				err+="\n請勾選興趣";
+			}
+			if (form.textarea.value==""){
+				err+="\n請填寫自傳";
+			}
+			if (err==""){
+				divnode=document.getElementById("display");
+				while (divnode.firstChild) {
+					divnode.removeChild(divnode.firstChild);
+				}
+				tablenode=document.createElement("table");
+				questions=["姓名","生日","性別","興趣","自傳"];
+				answers=[form.name1.value,form.bir.value,form.gender.value,hobby,form.textarea.value];
+				divnode.appendChild(tablenode);
+				tablenode.setAttribute("border", "1");
+				for(var i=0;i<questions.length;i++){
+					trnode=document.createElement("tr");
+					td1=document.createElement("td");
+					td1.setAttribute("onmouseover", "this.style.color='blue'");
+					td1.setAttribute("onmouseout", "this.style.color='red'");
+					tdx1=document.createTextNode(questions[i]);
+					td2=document.createElement("td");
+					tdx2=document.createTextNode(answers[i]);
+					tablenode.appendChild(trnode);
+					trnode.appendChild(td1);
+					trnode.appendChild(td2);
+					td1.appendChild(tdx1);
+					td2.appendChild(tdx2);
+				}
+			}else{
+				alert(err);
+			}
+		}
+		
+	</script>
+</head>
+
+<body>
+<div id="div">
+<fieldset>
+	<legend>表單</legend>
+	<form action="#" name="form1">
+	姓名<br>
+	<input type="text" name="name1" placeholder="name"><br>
+	生日<br>
+	<input type="text" name="bir" placeholder="birthday"><br>
+	性別<br>
+	<input type="radio" name="gender" value="男"> Male<br>
+	<input type="radio" name="gender" value="女"> Female<br>
+	興趣<br>
+	<input type="checkbox" name="hobby" value="看書">看書<br>
+	<input type="checkbox" name="hobby" value="打球">打球<br>
+	<input type="checkbox" name="hobby" value="睡覺">睡覺<br>
+	自傳<br>
+	<textarea id="textarea" name="textarea" rows="4" cols="50"></textarea><input type="button" onclick="generate()" value="自動生成自傳"/>
+	<br>
+	<input type="reset" value="清空">
+	<input type="button" value="送出" onclick="gogo()"/>
+	</form> 
+</fieldset>
+</div>
+<br><br>
+<div id="display" align="center">
+</div>
+</body>
+
+
+</html>
