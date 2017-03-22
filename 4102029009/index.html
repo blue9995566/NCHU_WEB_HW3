@@ -51,10 +51,10 @@
 			}
 			err="";
 			for(var i=0;i<questions.length;i++){
-				if(answers[i]=="") err+=questions[i]+" ";
+				if(answers[i]=="") err+="--請輸入"+questions[i]+"--<br>";
 			}
 			if(err=="")	gogo2();
-			else document.getElementById("error").innerHTML="請輸入"+err;
+			else document.getElementById("error").innerHTML=err;
 		}
 		function gogo2(){
 			//questions=["姓名","生日","性別","興趣","自傳"];
@@ -109,6 +109,7 @@
 </head>
 
 <body>
+<h3 align="center" id="error" style="color:red"></h3>
 <div id="div">
 <fieldset>
 	<legend>履歷</legend>
@@ -124,8 +125,7 @@
 	</div>
 	</form>
 </fieldset>
-<br><br>
-<h2 id="error" style="color:red"></h2>
+<br>
 <div id="display">
 </div>
 </div>
